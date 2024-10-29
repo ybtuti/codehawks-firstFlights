@@ -1,66 +1,74 @@
-## Foundry
+# First Flight #28: GivingThanks
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+- Starts: November 07, 2024 Noon UTC
+- Ends: November 14, 2024 Noon UTC
 
-Foundry consists of:
+- nSLOC: 67
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+[//]: # "contest-details-open"
 
-## Documentation
+## About the Project
 
-https://book.getfoundry.sh/
+About the Project
 
-## Usage
+ThanksgivingCharity is a decentralized platform that embodies the spirit of Thanksgiving by enabling donors to contribute Ether to registered and verified charitable causes. Charities can register themselves, and upon verification by the trusted admin, they become eligible to receive donations from generous participants. When donors make a donation, they receive a unique NFT as a donation receipt, commemorating their contribution. The NFT's metadata includes the donor's address, the date of the donation, and the amount donated.
 
-### Build
+## Actors
 
-```shell
-$ forge build
+- Admin (Trusted) - Can verify registered charities.
+- Charities - Can register to receive donations once verified.
+- Donors - Can donate Ether to verified charities and receive a donation receipt NFT.
+
+[//]: # "contest-details-close"
+[//]: # "scope-open"
+
+## Scope (contracts)
+
+```
+All Contracts in `src` are in scope.
 ```
 
-### Test
+```js
+├── src
+│   ├── CharityRegistry.sol
+│   └── GivingThanks.sol
 
-```shell
-$ forge test
 ```
 
-### Format
+## Compatibilities
 
-```shell
-$ forge fmt
+Compatibilities:
+Blockchains: - Ethereum/Any EVM
+Tokens: - ETH - ERC721
+
+[//]: # "scope-close"
+[//]: # "getting-started-open"
+
+## Setup
+
+Build:
+
+```bash
+git clone https://github.com/Cyfrin/2024-11-giving-thanks.git
+
+cd 2024-11-giving-thanks
+
+forge install OpenZeppelin/openzeppelin-contracts
+
+forge build
 ```
 
-### Gas Snapshots
+Tests:
 
-```shell
-$ forge snapshot
+```bash
+Forge test
 ```
 
-### Anvil
+[//]: # "getting-started-close"
+[//]: # "known-issues-open"
 
-```shell
-$ anvil
-```
+## Known Issues
 
-### Deploy
+No known issues
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+[//]: # "known-issues-close"
