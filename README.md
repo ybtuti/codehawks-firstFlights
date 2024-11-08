@@ -53,8 +53,6 @@ git clone https://github.com/Cyfrin/2024-11-giving-thanks.git
 
 cd 2024-11-giving-thanks
 
-forge install OpenZeppelin/openzeppelin-contracts
-
 forge build
 ```
 
