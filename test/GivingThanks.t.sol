@@ -35,7 +35,7 @@ contract GivingThanksTest is Test {
         vm.prank(admin);
         registryContract.verifyCharity(charity);
 
-        charityContract.updateRegistry(address(registryContract));
+        //charityContract.updateRegistry(address(registryContract));
     }
 
     function testDonate() public {
@@ -123,5 +123,17 @@ contract GivingThanksTest is Test {
         charityContract.donate{value: 1 ether}(unverifiedCharity);
 
         assertEq(unverifiedCharity.balance, 1 ether);
+    }
+
+    function testDonateFails() public {
+        uint256 donationAmount = 1 ether;
+
+        // Fund the donor
+        vm.deal(donor, 10 ether);
+
+        // Donor donates to the charity
+        vm.prank(donor);
+        vm.expectRevert();
+        charityContract.donate{value: donationAmount}(charity);
     }
 }
