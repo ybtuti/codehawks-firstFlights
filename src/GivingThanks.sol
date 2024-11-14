@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-// @audit floating pragma types
+// @written-low floating pragma types
 pragma solidity ^0.8.0;
 
 import "./CharityRegistry.sol";
@@ -13,23 +13,25 @@ import "@openzeppelin/contracts/utils/Base64.sol";
 contract GivingThanks is ERC721URIStorage {
     CharityRegistry public registry;
     uint256 public tokenCounter;
-    // @audit owner should be immutable as it is only set in the constructor
+    // @written-low owner should be immutable as it is only set in the constructor
     address public owner;
 
     // q is the registry parameter needed in this constructor?
-    // @audit msg.sender is casted into the Chainregisrty contract. It is incorrect because msg.sender is not necessarily the address of the chain Registry contract. this breaks the intended functionality of the contract.
+    // @written-high msg.sender is casted into the Chainregisrty contract. It is incorrect because msg.sender is not necessarily the address of the chain Registry contract. this breaks the intended functionality of the contract.
     constructor(address _registry) ERC721("DonationReceipt", "DRC") {
         registry = CharityRegistry(msg.sender);
         owner = msg.sender;
         tokenCounter = 0;
     }
 
+    // @written-low should be configured to follow CEI pattern
     function donate(address charity) public payable {
         // q is the isVerified function in the registry checking if the contract is indeed verified?
         require(registry.isVerified(charity), "Charity not verified");
         (bool sent,) = charity.call{value: msg.value}("");
         require(sent, "Failed to send Ether");
 
+        // @written-low use safeMint() instead of _mint()
         _mint(msg.sender, tokenCounter);
 
         // Create metadata for the tokenURI
