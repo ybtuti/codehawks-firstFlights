@@ -9,6 +9,7 @@ contract TwentyOne {
     struct DealersCards {
         uint256[] dealersCards;
     }
+    // q is there any mapping that shouldn't be visible to the user?
 
     mapping(address => PlayersCards) playersDeck;
     mapping(address => DealersCards) dealersDeck;
