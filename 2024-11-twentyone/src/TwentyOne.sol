@@ -140,6 +140,7 @@ contract TwentyOne {
         delete dealersDeck[player].dealersCards; // Clear the dealer's cards
         delete availableCards[player]; // Reset the deck
         if (playerWon) {
+            // is the syntax correct?
             payable(player).transfer(2 ether); // Transfer the prize to the player
             emit FeeWithdrawn(player, 2 ether); // Emit the prize withdrawal event
         }
